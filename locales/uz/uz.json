@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "home": "Bosh sahifa",
+    "about": "Biz Haqimizda",
+    "genres": "Janrlar",
+    "contact": "Aloqa"
+  },
+  "auth": {
+    "signUp": "Ro'yxatdan o'tish"
+  },
+  "search": {
+    "label": "Qidirish"
+  },
+  "about": {
+    "title": "Bizning Streaming Tajribamizga Xush Kelibsiz",
+    "desc1": "Minglab filmlar, TV seriallar va eksklyuziv kontentlarni istalgan vaqt, istalgan joydan tomosha qiling. Premium sifatli streaming va tezkor ishlash imkoniyati.",
+    "desc2": "Sevgan narsalaringizni, xohlagan vaqtingizda, barcha qurilmalaringizda tomosha qiling. Ko'ngilochar mazmun hech qachon bu qadar qulay bo'lmagan.",
+    "btn": "Tomosha Boshlash",
+
+    "whyUs": "Nega Biz?",
+    "featTitle": "Imkoniyatlarimiz",
+
+    "showcase": "Bizning Olam",
+    "showcaseTitle": "Tomosha Tajribangizni Yaxshilang",
+
+    "name": "Torayev Umidjon",
+    "text": "Zamonaviy texnologiyalar bilan qurilgan platforma sizga eng yaxshi tomosha tajribasini taqdim etadi. Tez, qulay va ishonchli.",
+
+    "ctaTitle": "Bugun Boshlang",
+    "ctaDesc": "Birinchi oyingiz bepul. Istalgan vaqt bekor qilishingiz mumkin.",
+    "ctaBtn": "Bepul Sinab Ko'ring"
+  }
+}
