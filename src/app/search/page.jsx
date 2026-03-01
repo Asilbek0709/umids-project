@@ -13,7 +13,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import ListItemText from "@mui/material/ListItemText";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -113,24 +113,19 @@ function HighlightedText({ text, query }) {
 }
 
 function SearchWithAutocomplete({ query, setQuery, getSuggestions }) {
-  const [suggestions, setSuggestions] = useState([]);
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
   const wrapperRef = useRef(null);
   const debouncedQuery = useDebounce(query, 150);
 
   // Lokal suggestions — sinxron, debounce bilan
-  useEffect(() => {
-    if (!getSuggestions || debouncedQuery.trim().length < 2) {
-      setSuggestions([]);
-      setOpen(false);
-      return;
-    }
-    const results = getSuggestions(debouncedQuery);
-    setSuggestions(results);
-    setOpen(results.length > 0);
-    setActiveIndex(-1);
-  }, [debouncedQuery, getSuggestions]);
+  const suggestions = useMemo(() => {
+  if (!getSuggestions || debouncedQuery.trim().length < 2) {
+    return [];
+  }
+
+  return getSuggestions(debouncedQuery);
+}, [debouncedQuery, getSuggestions]);
 
   // Tashqaridan bosiganda yopish
   useEffect(() => {
@@ -146,8 +141,6 @@ function SearchWithAutocomplete({ query, setQuery, getSuggestions }) {
   const handleSelect = useCallback(
     (title) => {
       setQuery(title);
-      setOpen(false);
-      setSuggestions([]);
     },
     [setQuery]
   );
@@ -168,7 +161,8 @@ function SearchWithAutocomplete({ query, setQuery, getSuggestions }) {
     }
   };
 
-  const isDropdownOpen = open && suggestions.length > 0;
+  const isDropdownOpen =
+    debouncedQuery.trim().length >= 2 && suggestions.length > 0;
 
   return (
     <div ref={wrapperRef} style={{ position: "relative", width: "min(900px, 90vw)" }}>
