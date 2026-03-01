@@ -59,7 +59,6 @@ const btnVariants = {
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
-  const [mounted, setMounted] = useState(false);
 
   const NAV_LINKS = [
     { key: "nav.home", href: "/" },
@@ -95,9 +94,6 @@ export default function Navbar() {
   const gradientOp = useTransform(spring, [0, 100], [1, 0]);
   const blurVal = useTransform(spring, [0, 100], ["blur(0px)", "blur(22px)"]);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const switchLang = (lang) => {
     i18n.changeLanguage(lang);
@@ -106,7 +102,6 @@ export default function Navbar() {
 
   return (
     <AnimatePresence>
-      {mounted && (
         <div className="fixed inset-x-0 top-0 z-50 pointer-events-none">
           <motion.div
             style={{ opacity: gradientOp }}
@@ -234,7 +229,6 @@ export default function Navbar() {
             </motion.nav>
           </motion.div>
         </div>
-      )}
     </AnimatePresence>
   );
 }
